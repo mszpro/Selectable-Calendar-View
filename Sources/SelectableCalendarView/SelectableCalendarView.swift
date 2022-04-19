@@ -9,7 +9,7 @@ import SwiftUI
 
 @available(macOS 12, *)
 @available(iOS 15, *)
-public struct CalendarView: View {
+public struct SelectableCalendarView: View {
     
     // 表示される月の任意の日に設定します（通常は1日）
     @State var monthToDisplay: Date
