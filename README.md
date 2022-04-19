@@ -2,6 +2,8 @@
 
 A SwiftUI calendar view that allows month switching and date picking.
 
+<img height="300" src="https://raw.githubusercontent.com/mszpro/Selectable-Calendar-View/main/Social-Image.png">
+
 You can simply add this repository to your project using Swift Package, `import SelectableCalendarView` into your SwiftUI view code, and then use the following code to show a calendar:
 
 ```swift
