@@ -12,9 +12,8 @@ struct ContentView: View {
     @State private var dateSelected: Date = Date()
     
     var body: some View {
-        if let targetMonth = Calendar.current.date(byAdding: .month, value: 0, to: Date()) {
-                SelectableCalendarView(monthToDisplay: targetMonth, dateSelected: $dateSelected)
-            }
+        // monthToDisplay変数には、表示させたい月の任意の日を指定します。
+        SelectableCalendarView(monthToDisplay: Date(), dateSelected: $dateSelected)
     }
     
 }
