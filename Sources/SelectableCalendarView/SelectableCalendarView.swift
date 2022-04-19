@@ -23,11 +23,15 @@ public struct SelectableCalendarView: View {
     // Whether to show the month label
     var showMonthLabel: Bool
     
-    public init(monthToDisplay: Date, dateSelected: Binding<Date>, allowSwitchMonth: Bool = true, showMonthLabel: Bool = true) {
+    // Provide a function; this class will ask if a specific date circle should be filled in (a darker color).
+    var isDateCircleFilled: ((Date) -> Bool)?
+    
+    public init(monthToDisplay: Date, dateSelected: Binding<Date>, allowSwitchMonth: Bool = true, showMonthLabel: Bool = true, isDateCircleFilled: ((Date) -> Bool)? = nil) {
         self._monthToDisplay = .init(initialValue: monthToDisplay)
         self._dateSelected = dateSelected
         self.allowSwitchMonth = allowSwitchMonth
         self.showMonthLabel = showMonthLabel
+        self.isDateCircleFilled = isDateCircleFilled
     }
     
     public var body: some View {
@@ -78,9 +82,15 @@ public struct SelectableCalendarView: View {
                             Button {
                                 self.dateSelected = date
                             } label: {
-                                Text("\(date.getDayNumber())")
-                                    .id(date)
-                                    .addCircularBackground(isFilled: true, isSelected: dateSelected.isSameDay(comparingTo: date))
+                                if let isDateCircleFilled = isDateCircleFilled {
+                                    Text("\(date.getDayNumber())")
+                                        .id(date)
+                                        .addCircularBackground(isFilled: isDateCircleFilled(date), isSelected: dateSelected.isSameDay(comparingTo: date))
+                                } else {
+                                    Text("\(date.getDayNumber())")
+                                        .id(date)
+                                        .addCircularBackground(isFilled: true, isSelected: dateSelected.isSameDay(comparingTo: date))
+                                }
                             }
                         } else {
                             Text("\(date.getDayNumber())")
