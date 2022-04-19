@@ -13,7 +13,7 @@ struct ContentView: View {
     
     var body: some View {
         if let targetMonth = Calendar.current.date(byAdding: .month, value: 0, to: Date()) {
-                CalendarView(monthToDisplay: targetMonth, dateSelected: $dateSelected)
+                SelectableCalendarView(monthToDisplay: targetMonth, dateSelected: $dateSelected)
             }
     }
     
@@ -23,7 +23,7 @@ struct ContentView: View {
 You can also customize the colors of the calendar view, or to show/hide the month switching buttons by adjusting the .init parameters:
 
 ```swift
-public struct CalendarView: View {
+public struct SelectableCalendarView: View {
     public init(monthToDisplay: Date, dateSelected: Binding<Date>, allowSwitchMonth: Bool = true, showMonthLabel: Bool = true) { ... }
 }
 ```
