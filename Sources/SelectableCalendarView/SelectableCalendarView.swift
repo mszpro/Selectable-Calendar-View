@@ -70,6 +70,7 @@ public struct SelectableCalendarView: View {
                 // Week day labels
                 ForEach(["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"], id: \.self) { weekdayName in
                     Text(weekdayName)
+                        .font(.system(size: 15).bold())
                 }
                 // Day number text
                 Section {
@@ -78,6 +79,7 @@ public struct SelectableCalendarView: View {
                         if Calendar.current.isDate(date, equalTo: monthToDisplay, toGranularity: .month) {
                             if let isDateCircleFilled = isDateCircleFilled {
                                 Text("\(date.getDayNumber())")
+                                    .font(.system(size: 15))
                                     .id(date)
                                     .addCircularBackground(isFilled: isDateCircleFilled(date), isSelected: dateSelected.isSameDay(comparingTo: date))
                                     .onTapGesture {
@@ -85,6 +87,7 @@ public struct SelectableCalendarView: View {
                                     }
                             } else {
                                 Text("\(date.getDayNumber())")
+                                    .font(.system(size: 15))
                                     .id(date)
                                     .addCircularBackground(isFilled: true, isSelected: dateSelected.isSameDay(comparingTo: date))
                                     .onTapGesture {
@@ -93,6 +96,7 @@ public struct SelectableCalendarView: View {
                             }
                         } else {
                             Text("\(date.getDayNumber())")
+                                .font(.system(size: 15))
                                 .addCircularBackground(isFilled: false, isSelected: false)
                                 .hidden()
                         }

@@ -14,7 +14,7 @@ extension View {
     @ViewBuilder
     func addCircularBackground(isFilled: Bool, isSelected: Bool, highlightColor: Color = .blue, normalColor: Color = .cyan) -> some View {
         self
-            .padding(12)
+            .padding(9)
         #if os(macOS)
             .foregroundColor(Color(cgColor: .black))
         #elseif os(iOS)
@@ -23,7 +23,7 @@ extension View {
             .background(
                 Circle()
                     .foregroundColor(isSelected ? highlightColor : normalColor)
-                    .frame(width: 40, height: 40)
+                    .frame(width: 35, height: 35)
                     .opacity(isFilled ? 1.0 : 0.5)
                     .padding(isSelected ? 3 : 0)
                     .overlay(
