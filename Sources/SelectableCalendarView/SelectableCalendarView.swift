@@ -38,20 +38,18 @@ public struct SelectableCalendarView: View {
         VStack {
             HStack {
                 if allowSwitchMonth {
-                    Button {
-                        monthToDisplay = monthToDisplay.getLastMonth()
-                    } label: {
-                        Image(systemName: "arrow.left.circle")
-                            .font(.system(size: 30))
-                    }
+                    Image(systemName: "arrow.left.circle")
+                        .font(.system(size: 30))
+                        .onTapGesture {
+                            monthToDisplay = monthToDisplay.getLastMonth()
+                        }
                     if monthToDisplay.getMonthString() != Date().getMonthString() {
                         // Show the user return to current month button
-                        Button {
-                            monthToDisplay = Date()
-                        } label: {
-                            Image(systemName: "arrow.counterclockwise.circle")
-                                .font(.system(size: 30))
-                        }
+                        Image(systemName: "arrow.counterclockwise.circle")
+                            .font(.system(size: 30))
+                            .onTapGesture {
+                                monthToDisplay = Date()
+                            }
                     }
                 }
                 Spacer()
@@ -61,12 +59,11 @@ public struct SelectableCalendarView: View {
                 }
                 Spacer()
                 if allowSwitchMonth {
-                    Button {
-                        monthToDisplay = monthToDisplay.getNextMonth()
-                    } label: {
-                        Image(systemName: "arrow.right.circle")
-                            .font(.system(size: 30))
-                    }
+                    Image(systemName: "arrow.right.circle")
+                        .font(.system(size: 30))
+                        .onTapGesture {
+                            monthToDisplay = monthToDisplay.getNextMonth()
+                        }
                 }
             }
             LazyVGrid(columns: Array(repeating: GridItem(), count: 7)) {
@@ -79,18 +76,20 @@ public struct SelectableCalendarView: View {
                     ForEach(monthToDisplay.getDaysForMonth(), id: \.self) { date in
                         // Only display days of the given month
                         if Calendar.current.isDate(date, equalTo: monthToDisplay, toGranularity: .month) {
-                            Button {
-                                self.dateSelected = date
-                            } label: {
-                                if let isDateCircleFilled = isDateCircleFilled {
-                                    Text("\(date.getDayNumber())")
-                                        .id(date)
-                                        .addCircularBackground(isFilled: isDateCircleFilled(date), isSelected: dateSelected.isSameDay(comparingTo: date))
-                                } else {
-                                    Text("\(date.getDayNumber())")
-                                        .id(date)
-                                        .addCircularBackground(isFilled: true, isSelected: dateSelected.isSameDay(comparingTo: date))
-                                }
+                            if let isDateCircleFilled = isDateCircleFilled {
+                                Text("\(date.getDayNumber())")
+                                    .id(date)
+                                    .addCircularBackground(isFilled: isDateCircleFilled(date), isSelected: dateSelected.isSameDay(comparingTo: date))
+                                    .onTapGesture {
+                                        self.dateSelected = date
+                                    }
+                            } else {
+                                Text("\(date.getDayNumber())")
+                                    .id(date)
+                                    .addCircularBackground(isFilled: true, isSelected: dateSelected.isSameDay(comparingTo: date))
+                                    .onTapGesture {
+                                        self.dateSelected = date
+                                    }
                             }
                         } else {
                             Text("\(date.getDayNumber())")
