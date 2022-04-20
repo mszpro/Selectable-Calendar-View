@@ -25,9 +25,15 @@ You can also customize the colors of the calendar view, or to show/hide the mont
 
 ```swift
 public struct SelectableCalendarView: View {
-    public init(monthToDisplay: Date, dateSelected: Binding<Date>, allowSwitchMonth: Bool = true, showMonthLabel: Bool = true) { ... }
+    public init(monthToDisplay: Date, dateSelected: Binding<Date>, allowSwitchMonth: Bool = true, showMonthLabel: Bool = true, isDateCircleFilled: ((Date) -> Bool)? = nil) { ... }
 }
 ```
+
+`monthToDisplay` is any day of the month you want to display.
+`dateSelected` is the way your app reads/sets the date selected on the calendar view.
+`allowSwitchMonth` controls whether the previous/next/current month switching buttons are shown.
+`showMonthLabel` cnotrols whether the name of the month is shown or not.
+`isDateCircleFilled` is a delegate-style function you use to indicate whether a date circle should be highlighted.
 
 ## Install
 
