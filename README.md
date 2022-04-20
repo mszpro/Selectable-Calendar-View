@@ -9,6 +9,7 @@ A SwiftUI calendar view that allows month switching and date picking.
 You can simply add this repository to your project using Swift Package, `import SelectableCalendarView` into your SwiftUI view code, and then use the following code to show a calendar:
 
 ```swift
+import SelectableCalendarView
 struct ContentView: View {
     
     @State private var dateSelected: Date = Date()
@@ -29,11 +30,11 @@ public struct SelectableCalendarView: View {
 }
 ```
 
-`monthToDisplay` is any day of the month you want to display.
-`dateSelected` is the way your app reads/sets the date selected on the calendar view.
-`allowSwitchMonth` controls whether the previous/next/current month switching buttons are shown.
-`showMonthLabel` cnotrols whether the name of the month is shown or not.
-`isDateCircleFilled` is a delegate-style function you use to indicate whether a date circle should be highlighted.
+- `monthToDisplay` is any day of the month you want to display.
+- `dateSelected` is the way your app reads/sets the date selected on the calendar view.
+- `allowSwitchMonth` controls whether the previous/next/current month switching buttons are shown.
+- `showMonthLabel` cnotrols whether the name of the month is shown or not.
+- `isDateCircleFilled` is a delegate-style function you use to indicate whether a date circle should be highlighted.
 
 ## Install
 
